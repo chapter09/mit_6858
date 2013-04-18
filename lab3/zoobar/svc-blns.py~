@@ -1,0 +1,38 @@
+#!/usr/bin/python
+
+import sys
+import time
+
+from zoodb import *
+from debug import *
+from unixclient import call
+
+req = sys.stdin.read()
+msgs = req.split("@#")
+action = msgs[0]
+
+if action == 'new':
+    balance = Balance()
+    balance.username = msgs[1]
+    balance.zoobars = 10
+    db = balance_setup()
+    db.add(balance)
+    db.commit()
+elif action == 'modify':
+    #check token
+    #msgs[3] token
+    
+    msg = 'checkcookie@#' \
+        + msgs[1] + "@#" \
+        + msgs[3]
+    resp = call("authsvc/sock", msg).strip() 
+
+    db = balance_setup()
+    balance = db.query(Balance).get(msgs[1])
+    balance.zoobars = int(msgs[2])
+    db.update(balance)
+    db.commit()      
+    db = balance_setup()
+    print db.query(Balance).get(msgs[1]).zoobars
+else:
+    raise Exception("unknown action %s" % msgs[0])

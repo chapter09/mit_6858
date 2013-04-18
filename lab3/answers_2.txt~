@@ -1,0 +1,467 @@
+Exercise 1:
+	[zook.conf]
+		[zookd]
+			cmd = zookd
+			uid = 61012
+			gid = 61012
+			dir = /jail
+	
+		[simple_svc]
+			cmd = zookfs
+			url = /zoobar/media/.*
+			uid = 61013
+			gid = 61013
+			dir = /jail
+
+    add the uid and gid for each service, we could make those services running under unprivileged user IDs.
+
+	[chroot-setup.sh]
+		modify:
+			set_perms() {
+				local ownergroup="$1"
+				local perms="$2"
+				local pn="$3"
+
+				chown -R $ownergroup $pn
+				chmod -R $perms $pn
+			}
+
+		to realize recursively set the permission to directories.
+
+	add:
+			set_perms 61011:61011 755 /jail/zoobar/db
+		
+		to make the 61011 user could access the db.
+
+	Now that none of the services are running as root.
+
+Exercise 2:
+	[zook.conf]
+		[zook]
+			port       = 8080
+			http_svcs  = simple_svc, dynamic_svc
+			extra_svcs = echo_svc
+		[simple_svc]
+			cmd = zookfs
+			url = /zoobar/media/[a-z].*
+			uid = 61013
+			gid = 61013
+			dir = /jail
+
+		[dynamic_svc]
+			cmd = zookfs
+			url = /zoobar/index\.cgi(/.*)?
+			uid = 61011
+			gid = 61011
+			dir = /jail
+
+	to seperate the privilege to handle the static and dynamic content in the web server, in the ``zook.conf`` we take the RegExp in the url to match the corresponding file.
+
+Exercise 3:
+	[zoobar/transfer.py]
+		try:
+			if 'recipient' in request.form:
+				recipient = g.persondb.query(Person).get(request.form['recipient'])
+				#check whether recipient is sender
+				if cmp(recipient.username, g.user.person.username) == 0:
+					raise ValueError()
+				#zoobars > 0 and be digit
+				if not request.form['zoobars'].isdigit():
+					raise ValueError()
+				zoobars = int(request.form['zoobars'])
+				sender_balance = g.user.person.zoobars - zoobars
+				recipient_balance = recipient.zoobars + zoobars
+
+	1. eval() function could be a vulnerability as it could execute arbitrary code objects(such as those created by compile())
+	2. the zoobars from the user's input should be checked, if it's negative or even not number, it will bring in error operation or system breakdown.
+	3. the sequense of the send and recieve could be attacked via transfer credits to oneself, then the user will gain more credits.
+
+
+Exercise 4:
+[zoobar/svc-log.py]
+	#!/usr/bin/python
+
+	import sys
+	import time
+
+	from zoodb import *
+	from debug import *
+
+    #read the socket
+	req = sys.stdin.read()
+    #retrieve the data
+	msgs = req.split("@#")
+	transfer = Transfer()
+	transfer.sender = msgs[0]
+	transfer.recipient = msgs[1]
+	transfer.amount = msgs[2]
+	transfer.time = time.asctime()
+    #setup the access to the transfer database
+	db = transfer_setup()
+	db.add(transfer)
+	db.commit()
+
+	print "You said:", msgs[0], " xxx ", msgs[1], " xxx ", msgs[2]
+
+[zook.conf]
+	[echo_svc]
+		cmd = zooksvc
+		args = /echosvc/sock /zoobar/svc-log.py
+		dir = /jail
+		uid = 61010
+		gid = 61010
+
+    set up the service to svc-log.py
+
+[chroot-setup.sh]
+	#set_perms 61011:61011 755 /jail/zoobar/db
+
+	set_perms 61011:61011 755 /jail/zoobar/db/person
+	set_perms 61010:61010 755 /jail/zoobar/db/transfer
+
+    set smaller granularity permission control on tables of the db.
+
+Exercise 5 & Exercise 6:
+[zoobar/zoodb.py]
+	class Person(PersonBase):
+		__tablename__ = "person"
+		password = Column(String(128))
+		salt = Column(String(128))
+		username = Column(String(128), primary_key=True)
+		token = Column(String(128))
+		#zoobars = Column(Integer, nullable=False, default=10)
+		zoobars = 7
+		profile = Column(String(5000), nullable=False, default="")
+
+	class Balance(BalanceBase):
+		__tablename__ = "zoobars"
+		username = Column(String(128), primary_key=True)
+		zoobars = Column(Integer, nullable=False, default=10)
+
+	remove the zoobars column from the table Person, but keep a initial value of zoobars.
+
+[zoobar/svc-blns.py]
+	req = sys.stdin.read()
+	msgs = req.split("@#")
+	action = msgs[0]
+
+	if action == 'new':
+	    balance = Balance()
+	    balance.username = msgs[1]
+	    balance.zoobars = 10
+	    db = balance_setup()
+	    db.add(balance)
+	    db.commit()
+	elif action == 'modify':
+        db = balance_setup()
+        balance = db.query(Balance).get(msgs[1])
+        balance.zoobars = int(msgs[2])
+        db.update(balance)
+        db.commit()
+        db = balance_setup()
+        print db.query(Balance).get(msgs[1]).zoobars
+	else:
+	    raise Exception("unknown action %s" % msgs[0])
+
+	in the service svc-blns, there are two actions, the ``new`` will add a record into the table ``zoobars``, and the ``modity`` will update a record. 
+
+[zoobar/transfer.py]
+    balancedb = g.balancedb.query(Balance)
+	recipient_blns_obj = balancedb.get(recipient.username)
+	sender_blns_obj = balancedb.get(g.user.person.username)
+
+	sender_balance = sender_blns_obj.zoobars - zoobars
+	recipient_balance = recipient_blns_obj.zoobars + zoobars
+
+	#recipient_balance
+	if sender_balance < 0 or recipient_balance < 0:
+		raise ValueError()
+
+	#sender_balance_obj.zoobars = sender_balance
+	#recipient_balance_obj.zoobars = recipient_balance
+
+	msg = 'modify@#' \
+		+ g.user.person.username + "@#" \
+		+ str(sender_balance)
+	resp = call("blnssvc/sock", msg)
+	log("-------- msg: %s Response = %s" % (msg,resp) )
+
+	msg = 'modify@#' \
+		+ recipient.username + "@#" \
+		+ str(recipient_balance)
+	resp = call("blnssvc/sock", msg)
+	log("-------- Response = %s" % resp )
+
+	balancedb = balance_setup()
+
+	msg = g.user.person.username + "@#" \
+		+ recipient.username + "@#" \
+		+ str(zoobars)
+
+	resp = call("logsvc/sock", msg)
+	log("-------- Response = %s" % resp)
+
+	in the ``transfer.py`` we move the codes to update value of zoobars for sender and recipient to the service ``svc-blns.py``, and replaced with codes to call the service.
+
+[chroot-setup.sh]
+	create_socket_dir /jail/blnssvc 61014:61014 755
+	create_socket_dir /jail/logsvc 61010:61010 770
+	set_perms 61011:61011 755 /jail/zoobar/db/person
+	set_perms 61010:61010 755 /jail/zoobar/db/transfer
+	set_perms 61014:61014 755 /jail/zoobar/db/zoobars
+
+	set 775 to the socket of ``blnssvc`` for setting the the permissions on the new balances table such that only the transfer code can modify it, and the rest of the python code can only read it.
+
+[zook.conf]
+	[dynamic_svc]
+	    cmd = zookfs
+	    url = /zoobar/index\.cgi(/.*)?
+	    uid = 61011
+	    gid = 61010
+	    dir = /jail
+
+	make the ``transfer.py`` run under the group of 61010, the same as the service ``svc-log`` to fullfil the requirement that only the transfer code is able to invoke the logging service -- after all, no other python code should be able to generate log entries
+
+
+Exercise 7:
+We need to seperate the part of functions in the ``auth.py`` into a independent service called ``svc-auth.py``, and only this service have the permission to visit the ``auth`` table.
+
+[chroot-setup.sh]
+	python /jail/zoobar/zoodb.py init-auth
+	set_perms 61015:61015 700 /jail/zoobar/db/auth
+
+	set the permission for the ``auth`` table, as for the auth table storing passwords and tokens is only readable by your new authentication service.
+
+[zoobar/zook.conf]
+	[auth_svc]
+	    cmd = zooksvc
+	    args = /authsvc/sock /zoobar/svc-auth.py
+	    dir = /jail
+	    uid = 61015
+	    gid = 61015
+
+
+[zoobar/svc-auth.py]
+req = sys.stdin.read()
+msgs = req.split("@#")
+action = msgs[0]
+
+if action == "checklogin":
+    #msgs[1] username
+    #msgs[2] password
+    db = auth_setup()
+    auth = db.query(Auth).get(msgs[1])
+    if auth.password == hashlib.md5(msgs[2] \
+                        + auth.salt).hexdigest():
+        print "true"
+    else:
+        print "false"
+
+elif action == "logincookie":
+    #msgs[1] username
+    db = auth_setup()
+    auth = db.query(Auth).get(msgs[1])
+    print hashlib.md5("%s%.10f"\
+          % (auth.password, random.random())).hexdigest()
+
+elif action == "checkcookie":
+    #msgs[1] = username
+    #msgs[2] = token
+    db = auth_setup()
+    auth = db.query(Auth).get(msgs[1])
+    if auth and auth.token == msgs[2]:
+        print auth.token
+    else:
+        print None
+
+elif action == "register":
+    #msgs[1] = username
+    #msgs[2] = password
+    db = auth_setup()
+    newauth = Auth()
+    newauth.username = (msgs[1])
+    newauth.salt = "%04x" % random.randint(0, 0xffff)
+    newauth.password = hashlib.md5(msgs[2] \
+                     + newauth.salt).hexdigest()
+    newauth.token = hashlib.md5("%s%.10f" \
+                    % (newauth.password, random.random())).hexdigest()
+    db.add(newauth)
+    db.commit()
+    print "%s#%s" % (newauth.username, newauth.token)
+
+else:
+    raise Exception("unknown action %s" % msgs[0])
+
+    realize the authentication functions in the ``auth.py`` again in the ``svc-auth.py``, which includes the functions like generating tokens, adding salt to user's password, checking cookie etc.
+
+[zoobar/zoodb.py]
+	class Person(PersonBase):
+	    __tablename__ = "person"
+	    #password = Column(String(128))
+	    #salt = Column(String(128))
+	    username = Column(String(128), primary_key=True)
+	    #token = None
+	    #token = Column(String(128))
+	    #zoobars = Column(Integer, nullable=False, default=10)
+	    zoobars = 7
+	    profile = Column(String(5000), nullable=False, default="")
+
+	remove those secret information in the table ``person``
+
+	class Auth(AuthBase):
+	    __tablename__ = "auth"
+	    username = Column(String(128), primary_key=True)
+	    salt = Column(String(128))
+	    password = Column(String(128))
+	    token = Column(String(128))
+
+	create a table that records the privacy info for each user.
+
+[zoobar/__init__.py]
+	@app.before_request
+	@catch_err
+	def dbinit():
+	    g.persondb   = zoodb.person_setup()
+	    g.transferdb = zoodb.transfer_setup()
+	    g.balancedb = zoodb.balance_setup()
+	    #g.authdb = zoodb.auth_setup()
+
+	@app.after_request
+	@catch_err
+	def dbcommit(response):
+	    g.persondb.commit()
+	    g.transferdb.commit()
+	    g.balancedb.commit()
+	    #g.authdb.commit()
+	    return response
+
+	I found we could not initiate the table ``auth`` table in the ``__init__.py``, as the permission of the ``auth`` table won't allow.
+
+[zoobar/auth.py]
+	class User(object):
+    def __init__(self):
+        self.person = None
+
+    def checkLogin(self, username, password):
+        person = g.persondb.query(Person).get(username)
+        if not person:
+            return None
+
+        msg = 'checklogin@#'\
+            + username + "@#"\
+            + password
+        resp = call("authsvc/sock", msg).strip()
+        log("---auth----- Response = %s" % resp)
+
+        if resp == "true":
+            return self.loginCookie(person)
+        else:
+            return None
+
+    def addRegistration(self, username, password):
+        person = g.persondb.query(Person).get(username)
+        if person:
+            return None
+        newperson = Person()
+        newperson.username = username
+        g.persondb.add(newperson)
+        msg = 'register@#'\
+            + username + '@#'\
+            + password
+        cookie = call('authsvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg, cookie))
+
+        msg = 'new@#' + username
+        resp = call('blnssvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg,resp))
+
+        self.person = newperson
+        balancedb = balance_setup()
+        newperson.zoobars = balancedb.query(Balance).get(newperson.username).zoobars
+
+        return cookie
+
+    def loginCookie(self, person):
+        self.person = person
+        msg = 'logincookie@#'\
+            + person.username
+        resp = call('authsvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg, resp))
+
+        balancedb = balance_setup()
+        person.zoobars = balancedb.query(Balance).get(person.username).zoobars
+        return "%s#%s" % (person.username, resp)
+
+    def logout(self):
+        self.person = None
+
+    def checkCookie(self, cookie):
+        if not cookie:
+            return
+
+        (username, token) = cookie.rsplit("#", 1)
+        person = g.persondb.query(Person).get(username)
+        balancedb = balance_setup()
+        person.zoobars = balancedb.query(Balance).get(username).zoobars
+
+        msg = 'checkcookie@#'\
+            + username + "@#"\
+            + token + "@#"
+        resp = call('authsvc/sock', msg).strip()
+
+        if resp:
+            self.person = person
+
+    modify each methods in the ``User()`` class, to remove the codes which operate the privacy info like ``salt``, ``password`` directly, and add the call function into them.
+
+Exercise 8:
+In this exercise, we need to pass a token of the sender to the ``svc-blns.py`` to update the value of zoobars for each user. This token could be achieved via reading into cookies. After that, we need to add some authentication code in the service ``svc-blns.py``, of course, the most convenient way is to call the ``svc-auth.py``.
+
+[zoobar/svc-blns.py]
+	elif action == 'modify':
+    #check token
+    #msgs[3] token
+
+    msg = 'checkcookie@#' \
+        + msgs[1] + "@#" \
+        + msgs[3]
+    resp = call("authsvc/sock", msg).strip()
+    if not resp:
+        print None
+    else:
+        db = balance_setup()
+        balance = db.query(Balance).get(msgs[1])
+        balance.zoobars = int(msgs[2])
+        db.update(balance)
+        db.commit()
+        db = balance_setup()
+        print db.query(Balance).get(msgs[1]).zoobars
+
+[zoobar/transfer.py]	
+    token = request.cookies.get("PyZoobarLogin").split("#")[1]
+    #log("token is:%s"%token)
+    msg = 'modify@#' \
+        + g.user.person.username + "@#" \
+        + str(sender_balance) + "@#" \
+        + token
+    resp = call("blnssvc/sock", msg).strip()
+    log("-------- msg: %s Response = %s" % (msg,resp))
+    if not resp:
+       raise ValueError()
+
+   	get the token of the sender in the cookie.
+
+[zoobar/demo-client.py]
+	msg = 'modify@#' \
+	    + "test1" + "@#" \
+	    + str(2)
+	resp = call("/jail/blnssvc/sock", msg)
+	print "Response = ", resp
+
+ After those steps, the ``demo-client.py`` can not modify the value of zoobar of arbitrary pair of users.
+
+
+
+
+
+
