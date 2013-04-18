@@ -1,0 +1,331 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ASFLAGS	Makefile	/^ASFLAGS := -m32$/;"	m
+Balance	zoobar/zoodb.py	/^class Balance(BalanceBase):$/;"	c
+BalanceBase	zoobar/zoodb.py	/^BalanceBase = declarative_base()$/;"	v
+CFLAGS	Makefile	/^CFLAGS  := -m32 -g -std=c99 -Wall -Werror -D_GNU_SOURCE$/;"	m
+CGIHandler	password.cgi	/^from wsgiref.handlers import CGIHandler$/;"	i
+CGIHandler	zoobar/index.cgi	/^from wsgiref.handlers import CGIHandler$/;"	i
+Flask	password.cgi	/^from flask import Flask$/;"	i
+Flask	zoobar/__init__.py	/^from flask import Flask, g$/;"	i
+Flask	zoobar/__init__.py~	/^from flask import Flask, g$/;"	i
+KEY_FILE	submit.py	/^KEY_FILE = "submit.key"$/;"	v
+LDFLAGS	Makefile	/^LDFLAGS := -m32$/;"	m
+LDLIBS	Makefile	/^LDLIBS  := -lcrypto$/;"	m
+MAX_GIDS	zookld.c	19;"	d	file:
+MAX_SERVICES	zookd.c	11;"	d	file:
+MAX_SERVICES	zookld.c	18;"	d	file:
+Markup	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+Markup	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
+PROGS	Makefile	/^PROGS   := zookld zookfs zookd zooksvc$/;"	m
+Person	zoobar/zoodb.py	/^class Person(PersonBase):$/;"	c
+PersonBase	zoobar/zoodb.py	/^PersonBase   = declarative_base()$/;"	v
+STRING	shellcode.S	/^#define STRING "\/home\/httpd\/grades.txt"$/;"	d
+STRLEN	shellcode.S	/^#define STRLEN 22$/;"	d
+Transfer	zoobar/zoodb.py	/^class Transfer(TransferBase):$/;"	c
+TransferBase	zoobar/zoodb.py	/^TransferBase = declarative_base()$/;"	v
+User	zoobar/auth.py	/^class User(object):$/;"	c
+ZOOK_CONF	zookld.c	17;"	d	file:
+__init__	zoobar/auth.py	/^    def __init__(self):$/;"	m	class:User
+__tablename__	zoobar/zoodb.py	/^    __tablename__ = "balance"$/;"	v	class:Balance
+__tablename__	zoobar/zoodb.py	/^    __tablename__ = "person"$/;"	v	class:Person
+__tablename__	zoobar/zoodb.py	/^    __tablename__ = "transfer"$/;"	v	class:Transfer
+__try	zoobar/debug.py	/^    def __try(*args, **kwargs):$/;"	f	function:catch_err	file:
+access	check-lab2.py	/^def access(pn, perm):$/;"	f
+action	zoobar/svc-blns.py	/^action = msgs[0]$/;"	v
+action	zoobar/svc-blns.py~	/^action = msgs[0]$/;"	v
+addRegistration	zoobar/auth.py	/^    def addRegistration(self, username, password):$/;"	m	class:User
+amount	zoobar/zoodb.py	/^    amount = Column(Integer)$/;"	v	class:Transfer
+app	password.cgi	/^app = Flask(__name__)$/;"	v
+app	zoobar/__init__.py	/^app = Flask(__name__)$/;"	v
+app	zoobar/__init__.py~	/^app = Flask(__name__)$/;"	v
+atexit	check-lab2.py	/^import atexit$/;"	i
+auth	zoobar/login.py	/^import auth$/;"	i
+balance	zoobar/svc-blns.py	/^    balance = Balance()$/;"	v
+balance	zoobar/svc-blns.py	/^    balance = db.query(Balance).get(msgs[1])$/;"	v
+balance	zoobar/svc-blns.py~	/^    balance = Balance()$/;"	v
+balance	zoobar/svc-blns.py~	/^    balance = db.query(Balance).filter_by(username == msgs[1]).first()$/;"	v
+balance_setup	zoobar/zoodb.py	/^def balance_setup():$/;"	f
+binascii	exploit-3.py	/^import binascii$/;"	i
+binascii	exploit-4a.py	/^import binascii$/;"	i
+binascii	exploit-4b.py	/^import binascii$/;"	i
+build_exploit	exploit-2a.py	/^def build_exploit(shellcode):$/;"	f
+build_exploit	exploit-2b.py	/^def build_exploit(shellcode):$/;"	f
+build_exploit	exploit-3.py	/^def build_exploit(shellcode):$/;"	f
+build_exploit	exploit-4a.py	/^def build_exploit(shellcode):$/;"	f
+build_exploit	exploit-4b.py	/^def build_exploit(shellcode):$/;"	f
+call	zoobar/auth.py	/^from unixclient import call$/;"	i
+call	zoobar/demo-client.py	/^from unixclient import call$/;"	i
+call	zoobar/transfer.py	/^from unixclient import call$/;"	i
+call	zoobar/unixclient.py	/^def call(pn, req):$/;"	f
+calladdr	shellcode.S	/^ calladdr:$/;"	l
+catch_err	zoobar/__init__.py	/^from debug import catch_err$/;"	i
+catch_err	zoobar/__init__.py~	/^from debug import catch_err$/;"	i
+catch_err	zoobar/debug.py	/^def catch_err(f):$/;"	f
+catch_err	zoobar/zoobarjs.py	/^from debug import catch_err$/;"	i
+check	z_client.py	/^def check():$/;"	f
+checkCookie	zoobar/auth.py	/^    def checkCookie(self, cookie):$/;"	m	class:User
+checkLogin	zoobar/auth.py	/^    def checkLogin(self, username, password):$/;"	m	class:User
+check_db	check-lab2.py	/^def check_db(ex, dbfile, table, columns):$/;"	f
+check_ex0	check-lab2.py	/^def check_ex0():$/;"	f
+check_ex1	check-lab2.py	/^def check_ex1():$/;"	f
+check_ex2	check-lab2.py	/^def check_ex2():$/;"	f
+check_ex2_1	check-lab2.py	/^def check_ex2_1():$/;"	f
+check_ex2_2	check-lab2.py	/^def check_ex2_2():$/;"	f
+check_ex3	check-lab2.py	/^def check_ex3():$/;"	f
+check_ex4	check-lab2.py	/^def check_ex4():$/;"	f
+check_ex6	check-lab2.py	/^def check_ex6():$/;"	f
+check_ex6_1	check-lab2.py	/^def check_ex6_1():$/;"	f
+check_ex6_2	check-lab2.py	/^def check_ex6_2():$/;"	f
+check_ex7	check-lab2.py	/^def check_ex7():$/;"	f
+check_ex7_1	check-lab2.py	/^def check_ex7_1():$/;"	f
+check_ex7_2	check-lab2.py	/^def check_ex7_2():$/;"	f
+check_root	check-lab2.py	/^def check_root():$/;"	f
+check_zoobars	z_client.py	/^def check_zoobars(html, user, zoobars, zmsg):$/;"	f
+clean_env	check-lab2.py	/^def clean_env():$/;"	f
+column_in_table	check-lab2.py	/^def column_in_table(dbfile, table, column):$/;"	f
+create_socket_dir	chroot-setup.sh	/^create_socket_dir() {$/;"	f
+create_socket_dir	chroot-setup.sh~	/^create_socket_dir() {$/;"	f
+create_socket_dir	chroot_setup.sh	/^create_socket_dir() {$/;"	f
+db	zoobar/svc-auth.py	/^db = transfer_setup()$/;"	v
+db	zoobar/svc-bal.py~	/^db = transfer_setup()$/;"	v
+db	zoobar/svc-blns.py	/^    db = balance_setup()$/;"	v
+db	zoobar/svc-blns.py~	/^    db = balance_setup()$/;"	v
+db	zoobar/svc-log.py	/^db = transfer_setup()$/;"	v
+db	zoobar/svc-trsf.py~	/^db = transfer_setup()$/;"	v
+db_tables	check-lab2.py	/^def db_tables(dbfile):$/;"	f
+dbcommit	zoobar/__init__.py	/^def dbcommit(response):$/;"	f
+dbcommit	zoobar/__init__.py~	/^def dbcommit(response):$/;"	f
+dbinit	zoobar/__init__.py	/^def dbinit():$/;"	f
+dbinit	zoobar/__init__.py~	/^def dbinit():$/;"	f
+dbquery	check-lab2.py	/^def dbquery(dbfile, q):$/;"	f
+dbsetup	zoobar/zoodb.py	/^def dbsetup(name, base):$/;"	f
+dir_join	http.c	/^void dir_join(char *dst, const char *dirname, const char *filename) {$/;"	f
+div	zoobar/templates/zoobars.js	/^var div = document.getElementById("myZoobars");$/;"	v
+env_deserialize	http.c	/^void env_deserialize(const char *env, size_t len)$/;"	f
+fdprintf	http.c	/^void fdprintf(int fd, char *fmt, ...)$/;"	f
+file_read	check-lab2.py	/^def file_read(pn):$/;"	f
+file_read	z_client.py	/^def file_read(pn):$/;"	f
+file_uid	check-lab2.py	/^def file_uid(pn):$/;"	f
+file_write	z_client.py	/^def file_write(pn, data):$/;"	f
+g	zoobar/__init__.py	/^from flask import Flask, g$/;"	i
+g	zoobar/__init__.py~	/^from flask import Flask, g$/;"	i
+g	zoobar/auth.py	/^from flask import g$/;"	i
+g	zoobar/index.py	/^from flask import g, render_template, request$/;"	i
+g	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+g	zoobar/transfer.py	/^from flask import g, render_template, request$/;"	i
+g	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
+g	zoobar/zoobarjs.py	/^from flask import g, render_template, make_response$/;"	i
+get	z_client.py	/^def get(url, cookies):$/;"	f
+gids	zookld.c	/^static gid_t gids[MAX_GIDS];$/;"	v	file:
+glob	check-lab2.py	/^import glob$/;"	i
+green	check-lab2.py	/^def green(s):$/;"	f
+group_parse_cb	zookld.c	/^static int group_parse_cb(const char *gid_str, int len, void *arg)$/;"	f	file:
+hashlib	zoobar/auth.py	/^import hashlib$/;"	i
+http_err	http.c	/^void http_err(int fd, int code, char *fmt, ...)$/;"	f
+http_read_line	http.c	/^int http_read_line(int fd, char *buf, size_t size)$/;"	f
+http_request_headers	http.c	/^const char *http_request_headers(int fd)$/;"	f
+http_request_line	http.c	/^const char *http_request_line(int fd, char *reqpath, char *env, size_t *env_len)$/;"	f
+http_serve	http.c	/^void http_serve(int fd, const char *name)$/;"	f
+http_serve_directory	http.c	/^void http_serve_directory(int fd, const char *pn) {$/;"	f
+http_serve_executable	http.c	/^void http_serve_executable(int fd, const char *pn)$/;"	f
+http_serve_file	http.c	/^void http_serve_file(int fd, const char *pn)$/;"	f
+http_serve_none	http.c	/^void http_serve_none(int fd, const char *pn)$/;"	f
+id	zoobar/zoodb.py	/^    id = Column(Integer, primary_key=True)$/;"	v	class:Transfer
+index	password.cgi	/^def index():$/;"	f
+index	zoobar/__init__.py	/^import index$/;"	i
+index	zoobar/__init__.py~	/^import index$/;"	i
+index	zoobar/index.py	/^def index():$/;"	f
+killall	check-lab2.py	/^def killall():$/;"	f
+launch_svc	zookld.c	/^pid_t launch_svc(CONF *conf, const char *name)$/;"	f
+log	check-lab2.py	/^def log(*m):$/;"	f
+log	zoobar/debug.py	/^def log(msg):$/;"	f
+log_exit	check-lab2.py	/^def log_exit(*m):$/;"	f
+logged_in	zoobar/login.py	/^def logged_in():$/;"	f
+login	z_client.py	/^def login(user, password):$/;"	f
+login	zoobar/__init__.py	/^import login$/;"	i
+login	zoobar/__init__.py~	/^import login$/;"	i
+login	zoobar/login.py	/^def login():$/;"	f
+login	zoobar/zoobarjs.py	/^import login$/;"	i
+loginCookie	zoobar/auth.py	/^    def loginCookie(self, person):$/;"	m	class:User
+login_page	z_client.py	/^def login_page(op, user, password):$/;"	f
+loginhelper	zoobar/login.py	/^    def loginhelper(*args, **kwargs):$/;"	f	function:requirelogin
+logout	zoobar/auth.py	/^    def logout(self):$/;"	m	class:User
+logout	zoobar/login.py	/^def logout():$/;"	f
+main	check-lab2.py	/^def main():$/;"	f
+main	shellcode.S	/^ main:$/;"	l
+main	submit.py	/^def main(filename):$/;"	f
+main	zoobar/debug.py	/^def main():$/;"	f
+main	zookd.c	/^int main(int argc, char **argv)$/;"	f
+main	zookfs.c	/^int main(int argc, char **argv)$/;"	f
+main	zookld.c	/^int main(int argc, char **argv)$/;"	f
+main	zooksvc.c	/^main(int ac, char *av[])$/;"	f
+make_response	zoobar/zoobarjs.py	/^from flask import g, render_template, make_response$/;"	i
+msgs	zoobar/svc-auth.py	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-bal.py~	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-blns.py	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-blns.py~	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-log.py	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-trsf.py~	/^msgs = req.split("@#")$/;"	v
+ngids	zookld.c	/^static int ngids = 0;$/;"	v	file:
+nsvcs	zookd.c	/^static int nsvcs;$/;"	v	file:
+nsvcs	zookld.c	/^static int nsvcs = 0; \/* actual number of services *\/$/;"	v	file:
+os	check-lab2.py	/^import os$/;"	i
+os	submit.py	/^import os.path$/;"	i
+os	zoobar/zoodb.py	/^import os$/;"	i
+password	zoobar/zoodb.py	/^    password = Column(String(128))$/;"	v	class:Person
+path	submit.py	/^import os.path$/;"	i
+person_setup	zoobar/zoodb.py	/^def person_setup():$/;"	f
+popladdr	shellcode.S	/^ popladdr:$/;"	l
+post	z_client.py	/^def post(url, cookies, postdata):$/;"	f
+process_client	zookd.c	/^static void process_client(int fd)$/;"	f	file:
+profile	zoobar/zoodb.py	/^    profile = Column(String(5000), nullable=False, default="")$/;"	v	class:Person
+pwfiles	check-lab2.py	/^pwfiles = ['passwd', 'passwd-', 'shadow', 'shadow-', 'group', 'group-']$/;"	v
+random	zoobar/auth.py	/^import random$/;"	i
+re	z_client.py	/^import re$/;"	i
+recipient	zoobar/zoodb.py	/^    recipient = Column(String(128))$/;"	v	class:Transfer
+recvfd	http.c	/^ssize_t recvfd(int socket, void *buffer, size_t length, int *fd)$/;"	f
+red	check-lab2.py	/^def red(s):$/;"	f
+redirect	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+register	z_client.py	/^def register(user, password):$/;"	f
+render_template	zoobar/index.py	/^from flask import g, render_template, request$/;"	i
+render_template	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+render_template	zoobar/transfer.py	/^from flask import g, render_template, request$/;"	i
+render_template	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
+render_template	zoobar/zoobarjs.py	/^from flask import g, render_template, make_response$/;"	i
+req	exploit-2a.py	/^    req = build_exploit(shellcode)$/;"	v
+req	exploit-2b.py	/^    req = build_exploit(shellcode)$/;"	v
+req	exploit-3.py	/^    req = build_exploit(shellcode)$/;"	v
+req	exploit-4a.py	/^    req = build_exploit(shellcode)$/;"	v
+req	exploit-4b.py	/^    req = build_exploit(shellcode)$/;"	v
+req	zoobar/svc-auth.py	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-bal.py~	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-blns.py	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-blns.py~	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-echo.py	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-log.py	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-trsf.py~	/^req = sys.stdin.read()$/;"	v
+request	zoobar/index.py	/^from flask import g, render_template, request$/;"	i
+request	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+request	zoobar/transfer.py	/^from flask import g, render_template, request$/;"	i
+request	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
+requirelogin	zoobar/index.py	/^from login import requirelogin$/;"	i
+requirelogin	zoobar/login.py	/^def requirelogin(page):$/;"	f
+requirelogin	zoobar/transfer.py	/^from login import requirelogin$/;"	i
+requirelogin	zoobar/users.py	/^from login import requirelogin$/;"	i
+resp	exploit-2a.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
+resp	exploit-2b.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
+resp	exploit-3.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
+resp	exploit-4a.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
+resp	exploit-4b.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
+resp	zoobar/demo-client.py	/^resp = call("\/jail\/echosvc\/sock", "hello")$/;"	v
+restore_env	check-lab2.py	/^def restore_env():$/;"	f
+run_wget	z_client.py	/^def run_wget(opts=[]):$/;"	f
+salt	zoobar/zoodb.py	/^    salt = Column(String(128))$/;"	v	class:Person
+send_req	exploit-2a.py	/^def send_req(host, port, req):$/;"	f
+send_req	exploit-2b.py	/^def send_req(host, port, req):$/;"	f
+send_req	exploit-3.py	/^def send_req(host, port, req):$/;"	f
+send_req	exploit-4a.py	/^def send_req(host, port, req):$/;"	f
+send_req	exploit-4b.py	/^def send_req(host, port, req):$/;"	f
+sender	zoobar/zoodb.py	/^    sender = Column(String(128))$/;"	v	class:Transfer
+sendfd	http.c	/^ssize_t sendfd(int socket, const void *buffer, size_t length, int fd)$/;"	f
+service_parse_cb	zookld.c	/^static int service_parse_cb(const char *name, int len, void *arg)$/;"	f	file:
+set_perms	chroot-setup.sh	/^set_perms() {$/;"	f
+set_perms	chroot-setup.sh~	/^set_perms() {$/;"	f
+set_perms	chroot_setup.sh	/^set_perms() {$/;"	f
+setup	check-lab2.py	/^def setup():$/;"	f
+sh	check-lab2.py	/^def sh(cmd, exit_onerr=True):$/;"	f
+shellcode	exploit-2a.py	/^    shellcode = shellfile.read()$/;"	v
+shellcode	exploit-2b.py	/^    shellcode = shellfile.read()$/;"	v
+shellcode	exploit-3.py	/^    shellcode = shellfile.read()$/;"	v
+shellcode	exploit-4a.py	/^    shellcode = shellfile.read()$/;"	v
+shellcode	exploit-4b.py	/^    shellcode = shellfile.read()$/;"	v
+shellfile	exploit-2a.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
+shellfile	exploit-2b.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
+shellfile	exploit-3.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
+shellfile	exploit-4a.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
+shellfile	exploit-4b.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
+showZoobars	zoobar/templates/users.html	/^  function showZoobars(zoobars) {$/;"	f
+socket	exploit-2a.py	/^import socket$/;"	i
+socket	exploit-2b.py	/^import socket$/;"	i
+socket	exploit-3.py	/^import socket$/;"	i
+socket	exploit-4a.py	/^import socket$/;"	i
+socket	exploit-4b.py	/^import socket$/;"	i
+socket	zoobar/unixclient.py	/^import socket$/;"	i
+split_path	http.c	/^void split_path(char *pn)$/;"	f
+sqlite3	check-lab2.py	/^import sqlite3$/;"	i
+start_server	zookld.c	/^static int start_server(const char *portstr)$/;"	f	file:
+subprocess	check-lab2.py	/^import subprocess$/;"	i
+subprocess	submit.py	/^import subprocess$/;"	i
+subprocess	z_client.py	/^import subprocess$/;"	i
+svcfds	zookd.c	/^static int svcfds[MAX_SERVICES];$/;"	v	file:
+svcfds	zookld.c	/^static int svcfds[MAX_SERVICES];$/;"	v	file:
+svcnames	zookld.c	/^static char svcnames[MAX_SERVICES][256];$/;"	v	file:
+svcurls	zookd.c	/^static regex_t svcurls[MAX_SERVICES];$/;"	v	file:
+sys	check-lab2.py	/^import sys$/;"	i
+sys	exploit-2a.py	/^import sys$/;"	i
+sys	exploit-2b.py	/^import sys$/;"	i
+sys	exploit-3.py	/^import sys$/;"	i
+sys	exploit-4a.py	/^import sys$/;"	i
+sys	exploit-4b.py	/^import sys$/;"	i
+sys	submit.py	/^import sys$/;"	i
+sys	zoobar/debug.py	/^import sys$/;"	i
+sys	zoobar/svc-auth.py	/^import sys$/;"	i
+sys	zoobar/svc-bal.py~	/^import sys$/;"	i
+sys	zoobar/svc-blns.py	/^import sys$/;"	i
+sys	zoobar/svc-blns.py~	/^import sys$/;"	i
+sys	zoobar/svc-echo.py	/^import sys$/;"	i
+sys	zoobar/svc-log.py	/^import sys$/;"	i
+sys	zoobar/svc-trsf.py~	/^import sys$/;"	i
+sys	zoobar/zoodb.py	/^import sys$/;"	i
+thisdir	check-lab2.py	/^thisdir = os.path.dirname(os.path.abspath(__file__))$/;"	v
+time	check-lab2.py	/^import time$/;"	i
+time	zoobar/svc-auth.py	/^import time$/;"	i
+time	zoobar/svc-bal.py~	/^import time$/;"	i
+time	zoobar/svc-blns.py	/^import time$/;"	i
+time	zoobar/svc-blns.py~	/^import time$/;"	i
+time	zoobar/svc-log.py	/^import time$/;"	i
+time	zoobar/svc-trsf.py~	/^import time$/;"	i
+time	zoobar/transfer.py	/^import time$/;"	i
+time	zoobar/zoodb.py	/^    time = Column(String)$/;"	v	class:Transfer
+token	zoobar/zoodb.py	/^    token = Column(String(128))$/;"	v	class:Person
+touch	http.c	/^void touch(const char *name) {$/;"	f
+traceback	check-lab2.py	/^import traceback$/;"	i
+traceback	exploit-2a.py	/^import traceback$/;"	i
+traceback	exploit-2b.py	/^import traceback$/;"	i
+traceback	exploit-3.py	/^import traceback$/;"	i
+traceback	exploit-4a.py	/^import traceback$/;"	i
+traceback	exploit-4b.py	/^import traceback$/;"	i
+traceback	zoobar/debug.py	/^import traceback$/;"	i
+transfer	z_client.py	/^def transfer(sender_cookies, recipient, zoobars):$/;"	f
+transfer	zoobar/__init__.py	/^import transfer$/;"	i
+transfer	zoobar/__init__.py~	/^import transfer$/;"	i
+transfer	zoobar/svc-auth.py	/^transfer = Transfer()$/;"	v
+transfer	zoobar/svc-log.py	/^transfer = Transfer()$/;"	v
+transfer	zoobar/transfer.py	/^def transfer():$/;"	f
+transfer_setup	zoobar/zoodb.py	/^def transfer_setup():$/;"	f
+url_decode	http.c	/^void url_decode(char *dst, const char *src)$/;"	f
+url_for	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+urllib	submit.py	/^import urllib$/;"	i
+username	zoobar/zoodb.py	/^    username = Column(String(128), primary_key=True)$/;"	v	class:Balance
+username	zoobar/zoodb.py	/^    username = Column(String(128), primary_key=True)$/;"	v	class:Person
+users	zoobar/__init__.py	/^import users$/;"	i
+users	zoobar/__init__.py~	/^import users$/;"	i
+users	zoobar/users.py	/^def users():$/;"	f
+verbose	check-lab2.py	/^verbose = False$/;"	v
+view_user	z_client.py	/^def view_user(cookies, username):$/;"	f
+wraps	zoobar/debug.py	/^from functools import wraps$/;"	i
+wraps	zoobar/login.py	/^from functools import wraps$/;"	i
+z_client	check-lab2.py	/^import z_client$/;"	i
+zoobarjs	zoobar/__init__.py	/^import zoobarjs$/;"	i
+zoobarjs	zoobar/__init__.py~	/^import zoobarjs$/;"	i
+zoobarjs	zoobar/zoobarjs.py	/^def zoobarjs():$/;"	f
+zoobars	zoobar/zoodb.py	/^    zoobars = ""$/;"	v	class:Person
+zoobars	zoobar/zoodb.py	/^    zoobars = Column(Integer, nullable=False, default=10)$/;"	v	class:Balance
+zoodb	zoobar/__init__.py	/^import zoodb$/;"	i
+zoodb	zoobar/__init__.py~	/^import zoodb$/;"	i
+zook_uids	check-lab2.py	/^def zook_uids(url):$/;"	f
