@@ -78,10 +78,8 @@ main(int ac, char *av[])
 	    dup2(cfd, 0);
 	    dup2(cfd, 1);
 	    close(cfd);
-
-            signal(SIGCHLD, SIG_DFL);
-            signal(SIGPIPE, SIG_DFL);
-
+        signal(SIGCHLD, SIG_DFL);
+        signal(SIGPIPE, SIG_DFL);
 	    execl(bin, bin, 0);
 	    perror("execl");
 	    exit(-1);

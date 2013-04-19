@@ -2,6 +2,11 @@
 
 from unixclient import call
 
-resp = call("/jail/echosvc/sock", "hello")
+
+
+msg = 'modify@#' \
+    + "test1" + "@#" \
+    + str(2)
+resp = call("/jail/blnssvc/sock", msg)
 print "Response = ", resp
 

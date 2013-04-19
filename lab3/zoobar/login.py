@@ -38,6 +38,7 @@ def login():
                 login_error = "You must supply a password to register."
             else:
                 cookie = user.addRegistration(username, password)
+                log("This is Cookie:%s "%cookie)
                 if not cookie:
                     login_error = "Registration failed."
         elif 'submit_login' in request.form:
@@ -47,6 +48,7 @@ def login():
                 login_error = "You must supply a password to log in."
             else:
                 cookie = user.checkLogin(username, password)
+                log("This is: %s"%cookie)
                 if not cookie:
                     login_error = "Invalid username or password."
 

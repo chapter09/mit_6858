@@ -95,15 +95,15 @@ def xfer(rcptname, zoobars):
     #resp = call("logsvc/sock", msg).strip()
     #log("-------- Response = %s" % resp )
 
-    sender.zoobars = sender_balance
-    recipient.zoobars = recipient_balance
+    #sender.zoobars = sender_balance
+    #recipient.zoobars = recipient_balance
     
-    transfer = zoodb.Transfer()
-    transfer.sender = sender.username
-    transfer.recipient = recipient.username
-    transfer.amount = zoobars
-    transfer.time = time.asctime()
-    xfer_db.add(transfer)
+	transfer = zoodb.Transfer()
+	transfer.sender = sender.username
+	transfer.recipient = recipient.username
+	transfer.amount = zoobars
+	transfer.time = time.asctime()
+	xfer_db.add(transfer)
 
     person_db.commit()
     xfer_db.commit()

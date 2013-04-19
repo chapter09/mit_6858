@@ -5,15 +5,31 @@ import os
 
 PersonBase   = declarative_base()
 TransferBase = declarative_base()
+BalanceBase = declarative_base()
+AuthBase = declarative_base()
 
 class Person(PersonBase):
     __tablename__ = "person"
-    password = Column(String(128))
-    salt = Column(String(128))
+    #password = Column(String(128))
+    #salt = Column(String(128))
     username = Column(String(128), primary_key=True)
-    token = Column(String(128))
-    zoobars = Column(Integer, nullable=False, default=10)
+    #token = None
+    #token = Column(String(128))
+    #zoobars = Column(Integer, nullable=False, default=10)
+    zoobars = 7
     profile = Column(String(5000), nullable=False, default="")
+
+class Balance(BalanceBase):
+    __tablename__ = "zoobars"
+    username = Column(String(128), primary_key=True)
+    zoobars = Column(Integer, nullable=False, default=10)
+
+class Auth(AuthBase):
+    __tablename__ = "auth"
+    username = Column(String(128), primary_key=True)
+    salt = Column(String(128))
+    password = Column(String(128))
+    token = Column(String(128))
 
 class Transfer(TransferBase):
     __tablename__ = "transfer"
@@ -29,8 +45,8 @@ def dbsetup(name, base):
     if not os.path.exists(dbdir):
         os.makedirs(dbdir)
         
-    dbfile  = os.path.join(dbdir, "%s.db" % name)
-    engine  = create_engine('sqlite:///%s' % dbfile)
+    dbfile = os.path.join(dbdir, "%s.db" % name)
+    engine = create_engine('sqlite:///%s' % dbfile)
     base.metadata.create_all(engine)
     session = sessionmaker(bind=engine)
     return session()
@@ -40,6 +56,12 @@ def person_setup():
 
 def transfer_setup():
     return dbsetup("transfer", TransferBase)
+
+def balance_setup():
+    return dbsetup("zoobars", BalanceBase)
+
+def auth_setup():
+    return dbsetup("auth", AuthBase)
 
 import sys
 if __name__ == "__main__":
@@ -52,5 +74,9 @@ if __name__ == "__main__":
         person_setup()
     elif cmd == 'init-transfer':
         transfer_setup()
+    elif cmd == 'init-balance':
+        balance_setup()
+    elif cmd == 'init-auth':
+        auth_setup()
     else:
         raise Exception("unknown command %s" % cmd)

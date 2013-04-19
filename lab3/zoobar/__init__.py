@@ -24,12 +24,16 @@ app.add_url_rule("/logout", "logout", login.logout)
 def dbinit():
     g.persondb   = zoodb.person_setup()
     g.transferdb = zoodb.transfer_setup()
+    g.balancedb = zoodb.balance_setup()
+    #g.authdb = zoodb.auth_setup()
 
 @app.after_request
 @catch_err
 def dbcommit(response):
     g.persondb.commit()
     g.transferdb.commit()
+    g.balancedb.commit()
+    #g.authdb.commit()
     return response
 
 if __name__ == "__main__":

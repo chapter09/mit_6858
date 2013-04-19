@@ -5,37 +5,50 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 ASFLAGS	Makefile	/^ASFLAGS := -m32$/;"	m
+Auth	zoobar/zoodb.py	/^class Auth(AuthBase):$/;"	c
+AuthBase	zoobar/zoodb.py	/^AuthBase = declarative_base()$/;"	v
 Balance	zoobar/zoodb.py	/^class Balance(BalanceBase):$/;"	c
 BalanceBase	zoobar/zoodb.py	/^BalanceBase = declarative_base()$/;"	v
 CFLAGS	Makefile	/^CFLAGS  := -m32 -g -std=c99 -Wall -Werror -D_GNU_SOURCE$/;"	m
 CGIHandler	password.cgi	/^from wsgiref.handlers import CGIHandler$/;"	i
 CGIHandler	zoobar/index.cgi	/^from wsgiref.handlers import CGIHandler$/;"	i
+Dir	zoobar/pypysandbox.py	/^from pypy.translator.sandbox.vfs import Dir, RealDir, RealFile$/;"	i
 Flask	password.cgi	/^from flask import Flask$/;"	i
 Flask	zoobar/__init__.py	/^from flask import Flask, g$/;"	i
 Flask	zoobar/__init__.py~	/^from flask import Flask, g$/;"	i
 KEY_FILE	submit.py	/^KEY_FILE = "submit.key"$/;"	v
 LDFLAGS	Makefile	/^LDFLAGS := -m32$/;"	m
 LDLIBS	Makefile	/^LDLIBS  := -lcrypto$/;"	m
+LIB_ROOT	zoobar/pypysandbox.py	/^from pypy.tool.lib_pypy import LIB_ROOT$/;"	i
 MAX_GIDS	zookld.c	19;"	d	file:
-MAX_SERVICES	zookd.c	11;"	d	file:
+MAX_SERVICES	zookd.c	12;"	d	file:
 MAX_SERVICES	zookld.c	18;"	d	file:
 Markup	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
 Markup	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
+MySandboxedProc	zoobar/pypysandbox.py	/^class MySandboxedProc(pypy_interact.PyPySandboxedProc):$/;"	c
 PROGS	Makefile	/^PROGS   := zookld zookfs zookd zooksvc$/;"	m
 Person	zoobar/zoodb.py	/^class Person(PersonBase):$/;"	c
 PersonBase	zoobar/zoodb.py	/^PersonBase   = declarative_base()$/;"	v
+RealDir	zoobar/pypysandbox.py	/^from pypy.translator.sandbox.vfs import Dir, RealDir, RealFile$/;"	i
+RealFile	zoobar/pypysandbox.py	/^from pypy.translator.sandbox.vfs import Dir, RealDir, RealFile$/;"	i
 STRING	shellcode.S	/^#define STRING "\/home\/httpd\/grades.txt"$/;"	d
 STRLEN	shellcode.S	/^#define STRLEN 22$/;"	d
+StringIO	zoobar/pypysandbox.py	/^from cStringIO import StringIO$/;"	i
 Transfer	zoobar/zoodb.py	/^class Transfer(TransferBase):$/;"	c
 TransferBase	zoobar/zoodb.py	/^TransferBase = declarative_base()$/;"	v
 User	zoobar/auth.py	/^class User(object):$/;"	c
+WritableFile	zoobar/pypysandbox.py	/^class WritableFile(vfs.RealFile):$/;"	c
 ZOOK_CONF	zookld.c	17;"	d	file:
 __init__	zoobar/auth.py	/^    def __init__(self):$/;"	m	class:User
-__tablename__	zoobar/zoodb.py	/^    __tablename__ = "balance"$/;"	v	class:Balance
+__init__	zoobar/pypysandbox.py	/^    def __init__(self, basenode):$/;"	m	class:WritableFile
+__init__	zoobar/pypysandbox.py	/^    def __init__(self, profile_owner, code, args):$/;"	m	class:MySandboxedProc
+__tablename__	zoobar/zoodb.py	/^    __tablename__ = "auth"$/;"	v	class:Auth
 __tablename__	zoobar/zoodb.py	/^    __tablename__ = "person"$/;"	v	class:Person
 __tablename__	zoobar/zoodb.py	/^    __tablename__ = "transfer"$/;"	v	class:Transfer
+__tablename__	zoobar/zoodb.py	/^    __tablename__ = "zoobars"$/;"	v	class:Balance
 __try	zoobar/debug.py	/^    def __try(*args, **kwargs):$/;"	f	function:catch_err	file:
-access	check-lab2.py	/^def access(pn, perm):$/;"	f
+action	zoobar/svc-auth.py	/^action = msgs[0]$/;"	v
+action	zoobar/svc-auth.py~	/^action = msgs[0]$/;"	v
 action	zoobar/svc-blns.py	/^action = msgs[0]$/;"	v
 action	zoobar/svc-blns.py~	/^action = msgs[0]$/;"	v
 addRegistration	zoobar/auth.py	/^    def addRegistration(self, username, password):$/;"	m	class:User
@@ -43,13 +56,18 @@ amount	zoobar/zoodb.py	/^    amount = Column(Integer)$/;"	v	class:Transfer
 app	password.cgi	/^app = Flask(__name__)$/;"	v
 app	zoobar/__init__.py	/^app = Flask(__name__)$/;"	v
 app	zoobar/__init__.py~	/^app = Flask(__name__)$/;"	v
-atexit	check-lab2.py	/^import atexit$/;"	i
+atexit	check_lab3.py	/^import atexit$/;"	i
 auth	zoobar/login.py	/^import auth$/;"	i
+auth	zoobar/svc-auth.py	/^    auth = db.query(Auth).get(msgs[1])$/;"	v
+auth	zoobar/svc-auth.py~	/^    auth = db.query(Auth).get(msgs[1])$/;"	v
+auth	zoobar/svc-auth.py~	/^    auth = db.query(Auth).get(username)$/;"	v
+auth_setup	zoobar/zoodb.py	/^def auth_setup():$/;"	f
+balance	zoobar/svc-blns.py	/^        balance = db.query(Balance).get(msgs[1])$/;"	v
 balance	zoobar/svc-blns.py	/^    balance = Balance()$/;"	v
-balance	zoobar/svc-blns.py	/^    balance = db.query(Balance).get(msgs[1])$/;"	v
 balance	zoobar/svc-blns.py~	/^    balance = Balance()$/;"	v
-balance	zoobar/svc-blns.py~	/^    balance = db.query(Balance).filter_by(username == msgs[1]).first()$/;"	v
+balance	zoobar/svc-blns.py~	/^    balance = db.query(Balance).get(msgs[1])$/;"	v
 balance_setup	zoobar/zoodb.py	/^def balance_setup():$/;"	f
+base64	check_lab3.py	/^import base64$/;"	i
 binascii	exploit-3.py	/^import binascii$/;"	i
 binascii	exploit-4a.py	/^import binascii$/;"	i
 binascii	exploit-4b.py	/^import binascii$/;"	i
@@ -58,8 +76,12 @@ build_exploit	exploit-2b.py	/^def build_exploit(shellcode):$/;"	f
 build_exploit	exploit-3.py	/^def build_exploit(shellcode):$/;"	f
 build_exploit	exploit-4a.py	/^def build_exploit(shellcode):$/;"	f
 build_exploit	exploit-4b.py	/^def build_exploit(shellcode):$/;"	f
+build_virtual_root	zoobar/pypysandbox.py	/^    def build_virtual_root(self):$/;"	m	class:MySandboxedProc
 call	zoobar/auth.py	/^from unixclient import call$/;"	i
 call	zoobar/demo-client.py	/^from unixclient import call$/;"	i
+call	zoobar/demo-client.py~	/^from unixclient import call$/;"	i
+call	zoobar/svc-blns.py	/^from unixclient import call$/;"	i
+call	zoobar/svc-blns.py~	/^from unixclient import call$/;"	i
 call	zoobar/transfer.py	/^from unixclient import call$/;"	i
 call	zoobar/unixclient.py	/^def call(pn, req):$/;"	f
 calladdr	shellcode.S	/^ calladdr:$/;"	l
@@ -70,62 +92,94 @@ catch_err	zoobar/zoobarjs.py	/^from debug import catch_err$/;"	i
 check	z_client.py	/^def check():$/;"	f
 checkCookie	zoobar/auth.py	/^    def checkCookie(self, cookie):$/;"	m	class:User
 checkLogin	zoobar/auth.py	/^    def checkLogin(self, username, password):$/;"	m	class:User
-check_db	check-lab2.py	/^def check_db(ex, dbfile, table, columns):$/;"	f
-check_ex0	check-lab2.py	/^def check_ex0():$/;"	f
-check_ex1	check-lab2.py	/^def check_ex1():$/;"	f
-check_ex2	check-lab2.py	/^def check_ex2():$/;"	f
-check_ex2_1	check-lab2.py	/^def check_ex2_1():$/;"	f
-check_ex2_2	check-lab2.py	/^def check_ex2_2():$/;"	f
-check_ex3	check-lab2.py	/^def check_ex3():$/;"	f
-check_ex4	check-lab2.py	/^def check_ex4():$/;"	f
-check_ex6	check-lab2.py	/^def check_ex6():$/;"	f
-check_ex6_1	check-lab2.py	/^def check_ex6_1():$/;"	f
-check_ex6_2	check-lab2.py	/^def check_ex6_2():$/;"	f
-check_ex7	check-lab2.py	/^def check_ex7():$/;"	f
-check_ex7_1	check-lab2.py	/^def check_ex7_1():$/;"	f
-check_ex7_2	check-lab2.py	/^def check_ex7_2():$/;"	f
-check_root	check-lab2.py	/^def check_root():$/;"	f
+check_challenge1	check_lab3.py	/^def check_challenge1():$/;"	f
+check_challenge2	check_lab3.py	/^def check_challenge2():$/;"	f
+check_dir_funcs	check_lab3.py	/^def check_dir_funcs():$/;"	f
+check_ex0	check_lab3.py	/^def check_ex0():$/;"	f
+check_granter	check_lab3.py	/^def check_granter():$/;"	f
+check_granter_1	check_lab3.py	/^def check_granter_1():$/;"	f
+check_granter_2	check_lab3.py	/^def check_granter_2():$/;"	f
+check_granter_3	check_lab3.py	/^def check_granter_3():$/;"	f
+check_granter_4	check_lab3.py	/^def check_granter_4():$/;"	f
+check_hello	check_lab3.py	/^def check_hello():$/;"	f
+check_last_visits	check_lab3.py	/^def check_last_visits():$/;"	f
+check_last_visits_1	check_lab3.py	/^def check_last_visits_1():$/;"	f
+check_last_visits_2	check_lab3.py	/^def check_last_visits_2():$/;"	f
+check_last_visits_3	check_lab3.py	/^def check_last_visits_3():$/;"	f
+check_nontmp_write	check_lab3.py	/^def check_nontmp_write():$/;"	f
+check_nontmp_write_internal	check_lab3.py	/^def check_nontmp_write_internal(nontmp_file):$/;"	f
+check_profile	check_lab3.py	/^def check_profile(prof_py, prof_pat, msg):$/;"	f
+check_profile_internal	check_lab3.py	/^def check_profile_internal(logmsg, code, prof_pat,$/;"	f
+check_rename	check_lab3.py	/^def check_rename():$/;"	f
+check_root	check_lab3.py	/^def check_root():$/;"	f
+check_sandbox	check_lab3.py	/^def check_sandbox():$/;"	f
+check_tmp	check_lab3.py	/^def check_tmp():$/;"	f
+check_unlink	check_lab3.py	/^def check_unlink():$/;"	f
+check_visit_tracker	check_lab3.py	/^def check_visit_tracker():$/;"	f
+check_visit_tracker_1	check_lab3.py	/^def check_visit_tracker_1():$/;"	f
+check_visit_tracker_2	check_lab3.py	/^def check_visit_tracker_2():$/;"	f
+check_xfer_tracker	check_lab3.py	/^def check_xfer_tracker():$/;"	f
+check_xfer_tracker_1	check_lab3.py	/^def check_xfer_tracker_1():$/;"	f
 check_zoobars	z_client.py	/^def check_zoobars(html, user, zoobars, zmsg):$/;"	f
-clean_env	check-lab2.py	/^def clean_env():$/;"	f
-column_in_table	check-lab2.py	/^def column_in_table(dbfile, table, column):$/;"	f
+clean_env	check_lab3.py	/^def clean_env():$/;"	f
 create_socket_dir	chroot-setup.sh	/^create_socket_dir() {$/;"	f
 create_socket_dir	chroot-setup.sh~	/^create_socket_dir() {$/;"	f
 create_socket_dir	chroot_setup.sh	/^create_socket_dir() {$/;"	f
-db	zoobar/svc-auth.py	/^db = transfer_setup()$/;"	v
+datetime	check_lab3.py	/^import datetime$/;"	i
+db	zoobar/svc-auth.py	/^    db = auth_setup()$/;"	v
+db	zoobar/svc-auth.py~	/^    db = auth_setup()$/;"	v
 db	zoobar/svc-bal.py~	/^db = transfer_setup()$/;"	v
+db	zoobar/svc-blns.py	/^        db = balance_setup()$/;"	v
 db	zoobar/svc-blns.py	/^    db = balance_setup()$/;"	v
 db	zoobar/svc-blns.py~	/^    db = balance_setup()$/;"	v
 db	zoobar/svc-log.py	/^db = transfer_setup()$/;"	v
 db	zoobar/svc-trsf.py~	/^db = transfer_setup()$/;"	v
-db_tables	check-lab2.py	/^def db_tables(dbfile):$/;"	f
 dbcommit	zoobar/__init__.py	/^def dbcommit(response):$/;"	f
 dbcommit	zoobar/__init__.py~	/^def dbcommit(response):$/;"	f
 dbinit	zoobar/__init__.py	/^def dbinit():$/;"	f
 dbinit	zoobar/__init__.py~	/^def dbinit():$/;"	f
-dbquery	check-lab2.py	/^def dbquery(dbfile, q):$/;"	f
 dbsetup	zoobar/zoodb.py	/^def dbsetup(name, base):$/;"	f
 dir_join	http.c	/^void dir_join(char *dst, const char *dirname, const char *filename) {$/;"	f
+dir_prof	check_lab3.py	/^def dir_prof(func, dir):$/;"	f
 div	zoobar/templates/zoobars.js	/^var div = document.getElementById("myZoobars");$/;"	v
+do_ll_os__ll_os_fstat	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_fstat(self, fd):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_getegid	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_getegid(self):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_geteuid	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_geteuid(self):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_getgid	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_getgid(self):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_getuid	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_getuid(self):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_open	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_open(self, vpathname, flags, mode):$/;"	m	class:MySandboxedProc
+do_ll_os__ll_os_write	zoobar/pypysandbox.py	/^    def do_ll_os__ll_os_write(self, fd, data):$/;"	m	class:MySandboxedProc
 env_deserialize	http.c	/^void env_deserialize(const char *env, size_t len)$/;"	f
+errno	zoobar/pypysandbox.py	/^import os, sys, errno$/;"	i
 fdprintf	http.c	/^void fdprintf(int fd, char *fmt, ...)$/;"	f
-file_read	check-lab2.py	/^def file_read(pn):$/;"	f
+file_read	check_lab3.py	/^def file_read(pn, size=-1):$/;"	f
 file_read	z_client.py	/^def file_read(pn):$/;"	f
-file_uid	check-lab2.py	/^def file_uid(pn):$/;"	f
+file_read_check	check_lab3.py	/^def file_read_check(logmsg, sbpath, realpath=None, data=None,$/;"	f
 file_write	z_client.py	/^def file_write(pn, data):$/;"	f
+file_write_check	check_lab3.py	/^def file_write_check(logmsg, sbpath, data=None,$/;"	f
+fn	profiles/last-visits.py	/^fn = '\/tmp\/last_visits_%s.dat' % selfuser$/;"	v
+fn	profiles/visit-tracker.py	/^fn = '\/tmp\/last_visit_%s_%s.dat' % (selfuser, visitor)$/;"	v
 g	zoobar/__init__.py	/^from flask import Flask, g$/;"	i
 g	zoobar/__init__.py~	/^from flask import Flask, g$/;"	i
 g	zoobar/auth.py	/^from flask import g$/;"	i
 g	zoobar/index.py	/^from flask import g, render_template, request$/;"	i
 g	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+g	zoobar/profile.py	/^from flask import g$/;"	i
 g	zoobar/transfer.py	/^from flask import g, render_template, request$/;"	i
 g	zoobar/users.py	/^from flask import g, render_template, request, Markup$/;"	i
 g	zoobar/zoobarjs.py	/^from flask import g, render_template, make_response$/;"	i
 get	z_client.py	/^def get(url, cookies):$/;"	f
+get_node	zoobar/pypysandbox.py	/^    def get_node(self, vpath):$/;"	m	class:MySandboxedProc
+get_param	zoobar/proflib.py	/^def get_param(key):$/;"	f
+get_user	zoobar/proflib.py	/^def get_user(username):$/;"	f
+get_xfers	zoobar/proflib.py	/^def get_xfers(username):$/;"	f
 gids	zookld.c	/^static gid_t gids[MAX_GIDS];$/;"	v	file:
-glob	check-lab2.py	/^import glob$/;"	i
-green	check-lab2.py	/^def green(s):$/;"	f
+green	check_lab3.py	/^def green(s):$/;"	f
 group_parse_cb	zookld.c	/^static int group_parse_cb(const char *gid_str, int len, void *arg)$/;"	f	file:
+handle_message	zoobar/pypysandbox.py	/^    def handle_message(self, fnname, *args):$/;"	m	class:MySandboxedProc
 hashlib	zoobar/auth.py	/^import hashlib$/;"	i
+hashlib	zoobar/svc-auth.py	/^import hashlib$/;"	i
+hashlib	zoobar/svc-auth.py~	/^import hashlib$/;"	i
 http_err	http.c	/^void http_err(int fd, int code, char *fmt, ...)$/;"	f
 http_read_line	http.c	/^int http_read_line(int fd, char *buf, size_t size)$/;"	f
 http_request_headers	http.c	/^const char *http_request_headers(int fd)$/;"	f
@@ -140,11 +194,15 @@ index	password.cgi	/^def index():$/;"	f
 index	zoobar/__init__.py	/^import index$/;"	i
 index	zoobar/__init__.py~	/^import index$/;"	i
 index	zoobar/index.py	/^def index():$/;"	f
-killall	check-lab2.py	/^def killall():$/;"	f
+killall	check_lab3.py	/^def killall():$/;"	f
+last_fn	profiles/granter.py	/^last_fn = '\/tmp\/last_freebie_%s_%s.dat' % (selfuser, visitor)$/;"	v
+last_xfer	profiles/granter.py	/^    last_xfer = float(f.read())$/;"	v
+last_xfer	profiles/granter.py	/^last_xfer = 0$/;"	v
 launch_svc	zookld.c	/^pid_t launch_svc(CONF *conf, const char *name)$/;"	f
-log	check-lab2.py	/^def log(*m):$/;"	f
+log	check_lab3.py	/^def log(*m):$/;"	f
 log	zoobar/debug.py	/^def log(msg):$/;"	f
-log_exit	check-lab2.py	/^def log_exit(*m):$/;"	f
+log_exit	check_lab3.py	/^def log_exit(*m):$/;"	f
+log_to_file	check_lab3.py	/^def log_to_file(*m):$/;"	f
 logged_in	zoobar/login.py	/^def logged_in():$/;"	f
 login	z_client.py	/^def login(user, password):$/;"	f
 login	zoobar/__init__.py	/^import login$/;"	i
@@ -156,7 +214,8 @@ login_page	z_client.py	/^def login_page(op, user, password):$/;"	f
 loginhelper	zoobar/login.py	/^    def loginhelper(*args, **kwargs):$/;"	f	function:requirelogin
 logout	zoobar/auth.py	/^    def logout(self):$/;"	m	class:User
 logout	zoobar/login.py	/^def logout():$/;"	f
-main	check-lab2.py	/^def main():$/;"	f
+main	check_lab3.py	/^def main():$/;"	f
+main	run-shellcode.c	/^main(int ac, char **av)$/;"	f
 main	shellcode.S	/^ main:$/;"	l
 main	submit.py	/^def main(filename):$/;"	f
 main	zoobar/debug.py	/^def main():$/;"	f
@@ -165,31 +224,54 @@ main	zookfs.c	/^int main(int argc, char **argv)$/;"	f
 main	zookld.c	/^int main(int argc, char **argv)$/;"	f
 main	zooksvc.c	/^main(int ac, char *av[])$/;"	f
 make_response	zoobar/zoobarjs.py	/^from flask import g, render_template, make_response$/;"	i
+me	profiles/granter.py	/^me = proflib.get_user(selfuser)$/;"	v
+msg	zoobar/demo-client.py	/^    + str(2)$/;"	v
+msg	zoobar/demo-client.py~	/^    + str(2)$/;"	v
+msg	zoobar/svc-blns.py	/^        + msgs[3]$/;"	v
+msg	zoobar/svc-blns.py~	/^        + msgs[3]$/;"	v
 msgs	zoobar/svc-auth.py	/^msgs = req.split("@#")$/;"	v
+msgs	zoobar/svc-auth.py~	/^msgs = req.split("@#")$/;"	v
 msgs	zoobar/svc-bal.py~	/^msgs = req.split("@#")$/;"	v
 msgs	zoobar/svc-blns.py	/^msgs = req.split("@#")$/;"	v
 msgs	zoobar/svc-blns.py~	/^msgs = req.split("@#")$/;"	v
 msgs	zoobar/svc-log.py	/^msgs = req.split("@#")$/;"	v
 msgs	zoobar/svc-trsf.py~	/^msgs = req.split("@#")$/;"	v
+newauth	zoobar/svc-auth.py	/^    newauth = Auth()$/;"	v
+newauth	zoobar/svc-auth.py~	/^    newauth = Auth()$/;"	v
 ngids	zookld.c	/^static int ngids = 0;$/;"	v	file:
+now	profiles/granter.py	/^now = time.time()$/;"	v
 nsvcs	zookd.c	/^static int nsvcs;$/;"	v	file:
 nsvcs	zookld.c	/^static int nsvcs = 0; \/* actual number of services *\/$/;"	v	file:
-os	check-lab2.py	/^import os$/;"	i
+nullsandbox	zoobar/profile.py	/^import nullsandbox$/;"	i
+open	zoobar/pypysandbox.py	/^    def open(self):$/;"	m	class:WritableFile
+os	check_lab3.py	/^import os$/;"	i
 os	submit.py	/^import os.path$/;"	i
+os	zoobar/pypysandbox.py	/^import os, sys, errno$/;"	i
 os	zoobar/zoodb.py	/^import os$/;"	i
-password	zoobar/zoodb.py	/^    password = Column(String(128))$/;"	v	class:Person
+parse_kv	zoobar/proflib.py	/^def parse_kv(argv):$/;"	f
+password	zoobar/zoodb.py	/^    password = Column(String(128))$/;"	v	class:Auth
 path	submit.py	/^import os.path$/;"	i
 person_setup	zoobar/zoodb.py	/^def person_setup():$/;"	f
 popladdr	shellcode.S	/^ popladdr:$/;"	l
 post	z_client.py	/^def post(url, cookies, postdata):$/;"	f
 process_client	zookd.c	/^static void process_client(int fd)$/;"	f	file:
 profile	zoobar/zoodb.py	/^    profile = Column(String(5000), nullable=False, default="")$/;"	v	class:Person
-pwfiles	check-lab2.py	/^pwfiles = ['passwd', 'passwd-', 'shadow', 'shadow-', 'group', 'group-']$/;"	v
+proflib	profiles/granter.py	/^import proflib, sys, time$/;"	i
+proflib	profiles/hello-user.py	/^import proflib, time$/;"	i
+proflib	profiles/last-visits.py	/^import proflib, time$/;"	i
+proflib	profiles/visit-tracker.py	/^import proflib, time$/;"	i
+proflib	profiles/xfer-tracker.py	/^import proflib, sys$/;"	i
+pwfiles	check_lab3.py	/^pwfiles = ['passwd', 'passwd-', 'shadow', 'shadow-', 'group', 'group-']$/;"	v
+pypy_interact	zoobar/pypysandbox.py	/^from pypy.translator.sandbox import pypy_interact, sandlib, vfs$/;"	i
+pypy_sandbox_dir	zoobar/pypysandbox.py	/^pypy_sandbox_dir = '\/zoobar\/pypy-sandbox'$/;"	v
 random	zoobar/auth.py	/^import random$/;"	i
+random	zoobar/svc-auth.py	/^import random$/;"	i
+random	zoobar/svc-auth.py~	/^import random$/;"	i
+re	check_lab3.py	/^import re$/;"	i
 re	z_client.py	/^import re$/;"	i
 recipient	zoobar/zoodb.py	/^    recipient = Column(String(128))$/;"	v	class:Transfer
 recvfd	http.c	/^ssize_t recvfd(int socket, void *buffer, size_t length, int *fd)$/;"	f
-red	check-lab2.py	/^def red(s):$/;"	f
+red	check_lab3.py	/^def red(s):$/;"	f
 redirect	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
 register	z_client.py	/^def register(user, password):$/;"	f
 render_template	zoobar/index.py	/^from flask import g, render_template, request$/;"	i
@@ -203,6 +285,7 @@ req	exploit-3.py	/^    req = build_exploit(shellcode)$/;"	v
 req	exploit-4a.py	/^    req = build_exploit(shellcode)$/;"	v
 req	exploit-4b.py	/^    req = build_exploit(shellcode)$/;"	v
 req	zoobar/svc-auth.py	/^req = sys.stdin.read()$/;"	v
+req	zoobar/svc-auth.py~	/^req = sys.stdin.read()$/;"	v
 req	zoobar/svc-bal.py~	/^req = sys.stdin.read()$/;"	v
 req	zoobar/svc-blns.py	/^req = sys.stdin.read()$/;"	v
 req	zoobar/svc-blns.py~	/^req = sys.stdin.read()$/;"	v
@@ -222,10 +305,22 @@ resp	exploit-2b.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"
 resp	exploit-3.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
 resp	exploit-4a.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
 resp	exploit-4b.py	/^    resp = send_req(sys.argv[1], int(sys.argv[2]), req)$/;"	v
-resp	zoobar/demo-client.py	/^resp = call("\/jail\/echosvc\/sock", "hello")$/;"	v
-restore_env	check-lab2.py	/^def restore_env():$/;"	f
+resp	zoobar/demo-client.py	/^resp = call("\/jail\/blnssvc\/sock", msg)$/;"	v
+resp	zoobar/demo-client.py~	/^resp = call("\/jail\/blnssvc\/sock", "hello")$/;"	v
+resp	zoobar/svc-blns.py	/^    resp = call("authsvc\/sock", msg).strip() $/;"	v
+resp	zoobar/svc-blns.py~	/^    resp = call("authsvc\/sock", msg).strip() $/;"	v
+restore_env	check_lab3.py	/^def restore_env():$/;"	f
+run	zoobar/nullsandbox.py	/^def run(profile_owner, code, args):$/;"	f
+run	zoobar/pypysandbox.py	/^def run(profile_owner, code, args = [], timeout = None):$/;"	f
+run_profile	zoobar/profile.py	/^def run_profile(user):$/;"	f
 run_wget	z_client.py	/^def run_wget(opts=[]):$/;"	f
-salt	zoobar/zoodb.py	/^    salt = Column(String(128))$/;"	v	class:Person
+s_StatResult	zoobar/pypysandbox.py	/^from pypy.rpython.module.ll_os_stat import s_StatResult$/;"	i
+salt	zoobar/zoodb.py	/^    salt = Column(String(128))$/;"	v	class:Auth
+sandlib	zoobar/pypysandbox.py	/^from pypy.translator.sandbox import pypy_interact, sandlib, vfs$/;"	i
+selfuser	profiles/granter.py	/^selfuser = proflib.get_param('ZOOBAR_SELF')$/;"	v
+selfuser	profiles/last-visits.py	/^selfuser = proflib.get_param('ZOOBAR_SELF')$/;"	v
+selfuser	profiles/visit-tracker.py	/^selfuser = proflib.get_param('ZOOBAR_SELF')$/;"	v
+selfuser	profiles/xfer-tracker.py	/^selfuser = proflib.get_param('ZOOBAR_SELF')$/;"	v
 send_req	exploit-2a.py	/^def send_req(host, port, req):$/;"	f
 send_req	exploit-2b.py	/^def send_req(host, port, req):$/;"	f
 send_req	exploit-3.py	/^def send_req(host, port, req):$/;"	f
@@ -237,8 +332,8 @@ service_parse_cb	zookld.c	/^static int service_parse_cb(const char *name, int le
 set_perms	chroot-setup.sh	/^set_perms() {$/;"	f
 set_perms	chroot-setup.sh~	/^set_perms() {$/;"	f
 set_perms	chroot_setup.sh	/^set_perms() {$/;"	f
-setup	check-lab2.py	/^def setup():$/;"	f
-sh	check-lab2.py	/^def sh(cmd, exit_onerr=True):$/;"	f
+setup	check_lab3.py	/^def setup():$/;"	f
+sh	check_lab3.py	/^def sh(cmd, exit_onerr=True):$/;"	f
 shellcode	exploit-2a.py	/^    shellcode = shellfile.read()$/;"	v
 shellcode	exploit-2b.py	/^    shellcode = shellfile.read()$/;"	v
 shellcode	exploit-3.py	/^    shellcode = shellfile.read()$/;"	v
@@ -250,6 +345,7 @@ shellfile	exploit-3.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
 shellfile	exploit-4a.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
 shellfile	exploit-4b.py	/^    shellfile = open("shellcode.bin", "r")$/;"	v
 showZoobars	zoobar/templates/users.html	/^  function showZoobars(zoobars) {$/;"	f
+signal	zoobar/nullsandbox.py	/^import signal, subprocess$/;"	i
 socket	exploit-2a.py	/^import socket$/;"	i
 socket	exploit-2b.py	/^import socket$/;"	i
 socket	exploit-3.py	/^import socket$/;"	i
@@ -257,24 +353,31 @@ socket	exploit-4a.py	/^import socket$/;"	i
 socket	exploit-4b.py	/^import socket$/;"	i
 socket	zoobar/unixclient.py	/^import socket$/;"	i
 split_path	http.c	/^void split_path(char *pn)$/;"	f
-sqlite3	check-lab2.py	/^import sqlite3$/;"	i
+sqlalchemy	zoobar/proflib.py	/^import sqlalchemy$/;"	i
 start_server	zookld.c	/^static int start_server(const char *portstr)$/;"	f	file:
-subprocess	check-lab2.py	/^import subprocess$/;"	i
+subprocess	check_lab3.py	/^import subprocess$/;"	i
 subprocess	submit.py	/^import subprocess$/;"	i
 subprocess	z_client.py	/^import subprocess$/;"	i
+subprocess	zoobar/nullsandbox.py	/^import signal, subprocess$/;"	i
 svcfds	zookd.c	/^static int svcfds[MAX_SERVICES];$/;"	v	file:
 svcfds	zookld.c	/^static int svcfds[MAX_SERVICES];$/;"	v	file:
 svcnames	zookld.c	/^static char svcnames[MAX_SERVICES][256];$/;"	v	file:
 svcurls	zookd.c	/^static regex_t svcurls[MAX_SERVICES];$/;"	v	file:
-sys	check-lab2.py	/^import sys$/;"	i
+symlink_check	check_lab3.py	/^    def symlink_check(logmsg, src, dst, data):$/;"	f	function:check_challenge2
+sys	check_lab3.py	/^import sys$/;"	i
 sys	exploit-2a.py	/^import sys$/;"	i
 sys	exploit-2b.py	/^import sys$/;"	i
 sys	exploit-3.py	/^import sys$/;"	i
 sys	exploit-4a.py	/^import sys$/;"	i
 sys	exploit-4b.py	/^import sys$/;"	i
+sys	profiles/granter.py	/^import proflib, sys, time$/;"	i
+sys	profiles/xfer-tracker.py	/^import proflib, sys$/;"	i
 sys	submit.py	/^import sys$/;"	i
 sys	zoobar/debug.py	/^import sys$/;"	i
+sys	zoobar/proflib.py	/^import sys, time$/;"	i
+sys	zoobar/pypysandbox.py	/^import os, sys, errno$/;"	i
 sys	zoobar/svc-auth.py	/^import sys$/;"	i
+sys	zoobar/svc-auth.py~	/^import sys$/;"	i
 sys	zoobar/svc-bal.py~	/^import sys$/;"	i
 sys	zoobar/svc-blns.py	/^import sys$/;"	i
 sys	zoobar/svc-blns.py~	/^import sys$/;"	i
@@ -282,9 +385,15 @@ sys	zoobar/svc-echo.py	/^import sys$/;"	i
 sys	zoobar/svc-log.py	/^import sys$/;"	i
 sys	zoobar/svc-trsf.py~	/^import sys$/;"	i
 sys	zoobar/zoodb.py	/^import sys$/;"	i
-thisdir	check-lab2.py	/^thisdir = os.path.dirname(os.path.abspath(__file__))$/;"	v
-time	check-lab2.py	/^import time$/;"	i
+thisdir	check_lab3.py	/^thisdir = os.path.dirname(os.path.abspath(__file__))$/;"	v
+time	check_lab3.py	/^import time$/;"	i
+time	profiles/granter.py	/^import proflib, sys, time$/;"	i
+time	profiles/hello-user.py	/^import proflib, time$/;"	i
+time	profiles/last-visits.py	/^import proflib, time$/;"	i
+time	profiles/visit-tracker.py	/^import proflib, time$/;"	i
+time	zoobar/proflib.py	/^import sys, time$/;"	i
 time	zoobar/svc-auth.py	/^import time$/;"	i
+time	zoobar/svc-auth.py~	/^import time$/;"	i
 time	zoobar/svc-bal.py~	/^import time$/;"	i
 time	zoobar/svc-blns.py	/^import time$/;"	i
 time	zoobar/svc-blns.py~	/^import time$/;"	i
@@ -292,9 +401,9 @@ time	zoobar/svc-log.py	/^import time$/;"	i
 time	zoobar/svc-trsf.py~	/^import time$/;"	i
 time	zoobar/transfer.py	/^import time$/;"	i
 time	zoobar/zoodb.py	/^    time = Column(String)$/;"	v	class:Transfer
-token	zoobar/zoodb.py	/^    token = Column(String(128))$/;"	v	class:Person
+token	zoobar/zoodb.py	/^    token = Column(String(128))$/;"	v	class:Auth
 touch	http.c	/^void touch(const char *name) {$/;"	f
-traceback	check-lab2.py	/^import traceback$/;"	i
+traceback	check_lab3.py	/^import traceback$/;"	i
 traceback	exploit-2a.py	/^import traceback$/;"	i
 traceback	exploit-2b.py	/^import traceback$/;"	i
 traceback	exploit-3.py	/^import traceback$/;"	i
@@ -304,28 +413,47 @@ traceback	zoobar/debug.py	/^import traceback$/;"	i
 transfer	z_client.py	/^def transfer(sender_cookies, recipient, zoobars):$/;"	f
 transfer	zoobar/__init__.py	/^import transfer$/;"	i
 transfer	zoobar/__init__.py~	/^import transfer$/;"	i
-transfer	zoobar/svc-auth.py	/^transfer = Transfer()$/;"	v
 transfer	zoobar/svc-log.py	/^transfer = Transfer()$/;"	v
 transfer	zoobar/transfer.py	/^def transfer():$/;"	f
 transfer_setup	zoobar/zoodb.py	/^def transfer_setup():$/;"	f
+unlink_prof	check_lab3.py	/^    def unlink_prof(filename):$/;"	f	function:check_unlink
+update_profile	check_lab3.py	/^def update_profile(cookie, code):$/;"	f
 url_decode	http.c	/^void url_decode(char *dst, const char *src)$/;"	f
 url_for	zoobar/login.py	/^from flask import g, redirect, render_template, request, url_for, Markup$/;"	i
+urllib	check_lab3.py	/^import urllib$/;"	i
 urllib	submit.py	/^import urllib$/;"	i
+username	zoobar/zoodb.py	/^    username = Column(String(128), primary_key=True)$/;"	v	class:Auth
 username	zoobar/zoodb.py	/^    username = Column(String(128), primary_key=True)$/;"	v	class:Balance
 username	zoobar/zoodb.py	/^    username = Column(String(128), primary_key=True)$/;"	v	class:Person
 users	zoobar/__init__.py	/^import users$/;"	i
 users	zoobar/__init__.py~	/^import users$/;"	i
 users	zoobar/users.py	/^def users():$/;"	f
-verbose	check-lab2.py	/^verbose = False$/;"	v
+verbose	check_lab3.py	/^verbose = False$/;"	v
+vfs	zoobar/pypysandbox.py	/^from pypy.translator.sandbox import pypy_interact, sandlib, vfs$/;"	i
 view_user	z_client.py	/^def view_user(cookies, username):$/;"	f
+visit_count	profiles/visit-tracker.py	/^    visit_count = int(f.readline())$/;"	v
+visit_count	profiles/visit-tracker.py	/^visit_count = 0$/;"	v
+visit_last	profiles/visit-tracker.py	/^    visit_last = f.readline()$/;"	v
+visit_last	profiles/visit-tracker.py	/^visit_last = 'never'$/;"	v
+visit_last	profiles/visit-tracker.py	/^visit_last = time.time()$/;"	v
+visitor	profiles/granter.py	/^visitor = proflib.get_param('ZOOBAR_VISITOR')$/;"	v
+visitor	profiles/last-visits.py	/^visitor = proflib.get_param('ZOOBAR_VISITOR')$/;"	v
+visitor	profiles/visit-tracker.py	/^visitor = proflib.get_param('ZOOBAR_VISITOR')$/;"	v
+visitor	profiles/xfer-tracker.py	/^visitor = proflib.get_param('ZOOBAR_VISITOR')$/;"	v
+visits	profiles/last-visits.py	/^    visits = [l.strip() for l in f.readlines()]$/;"	v
+visits	profiles/last-visits.py	/^visits = ['%s at %d' % (visitor, time.time())] + visits$/;"	v
+visits	profiles/last-visits.py	/^visits = []$/;"	v
+visits	profiles/last-visits.py	/^visits = visits[:3]$/;"	v
 wraps	zoobar/debug.py	/^from functools import wraps$/;"	i
 wraps	zoobar/login.py	/^from functools import wraps$/;"	i
-z_client	check-lab2.py	/^import z_client$/;"	i
+xfer	zoobar/proflib.py	/^def xfer(rcptname, zoobars):$/;"	f
+you	profiles/granter.py	/^you = proflib.get_user(visitor)$/;"	v
+z	check_lab3.py	/^import z_client as z$/;"	i
 zoobarjs	zoobar/__init__.py	/^import zoobarjs$/;"	i
 zoobarjs	zoobar/__init__.py~	/^import zoobarjs$/;"	i
 zoobarjs	zoobar/zoobarjs.py	/^def zoobarjs():$/;"	f
-zoobars	zoobar/zoodb.py	/^    zoobars = ""$/;"	v	class:Person
+zoobars	zoobar/zoodb.py	/^    zoobars = 7$/;"	v	class:Person
 zoobars	zoobar/zoodb.py	/^    zoobars = Column(Integer, nullable=False, default=10)$/;"	v	class:Balance
 zoodb	zoobar/__init__.py	/^import zoodb$/;"	i
 zoodb	zoobar/__init__.py~	/^import zoodb$/;"	i
-zook_uids	check-lab2.py	/^def zook_uids(url):$/;"	f
+zoodb	zoobar/proflib.py	/^import zoodb$/;"	i

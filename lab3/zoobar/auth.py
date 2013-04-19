@@ -1,6 +1,8 @@
 from flask import g
 import hashlib
 import random
+from unixclient import call
+from debug import *
 
 from zoodb import *
 
@@ -12,7 +14,14 @@ class User(object):
         person = g.persondb.query(Person).get(username)
         if not person:
             return None
-        if person.password == hashlib.md5(password + person.salt).hexdigest():
+
+        msg = 'checklogin@#'\
+            + username + "@#"\
+            + password
+        resp = call("authsvc/sock", msg).strip()
+        log("---auth----- Response = %s" % resp)
+
+        if resp == "true":
             return self.loginCookie(person)
         else:
             return None
@@ -23,16 +32,33 @@ class User(object):
             return None
         newperson = Person()
         newperson.username = username
-        newperson.salt = "%04x" % random.randint(0, 0xffff)
-        newperson.password = hashlib.md5(password + newperson.salt).hexdigest()
         g.persondb.add(newperson)
-        return self.loginCookie(newperson)
+        msg = 'register@#'\
+            + username + '@#'\
+            + password
+        cookie = call('authsvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg, cookie))
+
+        msg = 'new@#' + username
+        resp = call('blnssvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg,resp))
+
+        self.person = newperson
+        balancedb = balance_setup()
+        newperson.zoobars = balancedb.query(Balance).get(newperson.username).zoobars
+
+        return cookie
 
     def loginCookie(self, person):
         self.person = person
+        msg = 'logincookie@#'\
+            + person.username
+        resp = call('authsvc/sock', msg).strip()
+        log("---auth----- msg: %s Response = %s" % (msg, resp))
 
-        person.token = hashlib.md5("%s%.10f" % (person.password, random.random())).hexdigest()
-        return "%s#%s" % (person.username, person.token)
+        balancedb = balance_setup()
+        person.zoobars = balancedb.query(Balance).get(person.username).zoobars
+        return "%s#%s" % (person.username, resp)
 
     def logout(self):
         self.person = None
@@ -40,7 +66,16 @@ class User(object):
     def checkCookie(self, cookie):
         if not cookie:
             return
+
         (username, token) = cookie.rsplit("#", 1)
         person = g.persondb.query(Person).get(username)
-        if person and person.token == token:
+        balancedb = balance_setup()
+        person.zoobars = balancedb.query(Balance).get(username).zoobars
+
+        msg = 'checkcookie@#'\
+            + username + "@#"\
+            + token + "@#"
+        resp = call('authsvc/sock', msg).strip()
+
+        if resp:
             self.person = person
