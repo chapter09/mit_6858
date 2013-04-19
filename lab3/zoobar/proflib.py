@@ -7,6 +7,9 @@ sys.path += ['/usr/lib/pymodules/python2.6']
 
 import zoodb
 import sqlalchemy
+from debug import *
+
+from unixclient import call
 
 def parse_kv(argv):
     kv = {}
@@ -21,6 +24,7 @@ def parse_kv(argv):
 
 def get_param(key):
     kv = parse_kv(sys.argv)
+    log("-------- ARGV = %s" % (sys.argv).__str__() )
     return kv.get(key)
 
 def get_xfers(username):
@@ -37,21 +41,25 @@ def get_xfers(username):
 
 def get_user(username):
     person_db = zoodb.person_setup()
+    balance_db = zoodb.balance_setup()
     p = person_db.query(zoodb.Person).get(username)
+    balance = balance_db.query(zoodb.Balance).get(username)
+    log("user is: %s zoobars is: %d"%(username, balance.zoobars))
     if not p:
         return None
     return {'username': p.username,
             'profile': p.profile,
-            'zoobars': p.zoobars}
+            'zoobars': balance.zoobars}
 
 def xfer(rcptname, zoobars):
     selfname = get_param('ZOOBAR_SELF')
 
-    person_db = zoodb.person_setup()
-    xfer_db = zoodb.transfer_setup()
+    #person_db = zoodb.person_setup()
+    #xfer_db = zoodb.transfer_setup()
+    balance_db = zoodb.balance_setup()
 
-    sender = person_db.query(zoodb.Person).get(selfname)
-    recipient = person_db.query(zoodb.Person).get(rcptname)
+    sender = balance_db.query(zoodb.Balance).get(selfname)
+    recipient = balance_db.query(zoodb.Balance).get(rcptname)
 
     if not sender:
         raise Exception('sender ' + selfname + ' not found')
@@ -64,47 +72,41 @@ def xfer(rcptname, zoobars):
     if sender_balance < 0 or recipient_balance < 0:
         raise ValueError()
     
-    #token = request.cookies.get("PyZoobarLogin").split("#")[1]
-	#log("token is:%s"%token)            
-    #msg = 'modify@#' \
-        #+ g.user.person.username + "@#" \
-        #+ str(sender_balance) + "@#" \
-        #+ token
-    #resp = call("blnssvc/sock", msg).strip()
-    #log("-------- msg: %s Response = %s" % (msg,resp))
-    #if not resp:
-        #raise ValueError()
+    token = get_param('SELF_TOKEN') 
+    msg = 'modify@#' \
+        + selfname + "@#" \
+        + str(sender_balance) + "@#" \
+        + token
+    resp = call("blnssvc/sock", msg).strip()
+    log("-------- msg: %s Response = %s" % (msg,resp))
+    if not resp:
+        raise ValueError()
 
-    #msg = 'modify@#' \
-        #+ recipient.username + "@#" \
-        #+ str(recipient_balance) + "@#" \
-        #+ token
-    #resp = call("blnssvc/sock", msg).strip()
-    #log("-------- Response = %s" % resp )
+    msg = 'modify@#' \
+        + rcptname + "@#" \
+        + str(recipient_balance) + "@#" \
+        + token
+    resp = call("blnssvc/sock", msg).strip()
+    log("-------- Response = %s" % resp )
     
-    #balancedb = balance_setup()
-    #log("test %d"% balancedb.query(Balance)\
-        #.get(g.user.person.username).zoobars)
-    #log("test %d"% balancedb.query(Balance)\
-        #.get(recipient.username).zoobars)
 		
-    #msg = g.user.person.username + "@#" \
-        #+ recipient.username + "@#" \
-        #+ str(zoobars)
+    msg = selfname + "@#" \
+        + rcptname + "@#" \
+        + str(zoobars)
 
-    #resp = call("logsvc/sock", msg).strip()
-    #log("-------- Response = %s" % resp )
+    resp = call("logsvc/sock", msg).strip()
+    log("-------- Response = %s" % resp )
 
-    sender.zoobars = sender_balance
-    recipient.zoobars = recipient_balance
+    #sender.zoobars = sender_balance
+    #recipient.zoobars = recipient_balance
     
-    transfer = zoodb.Transfer()
-    transfer.sender = sender.username
-    transfer.recipient = recipient.username
-    transfer.amount = zoobars
-    transfer.time = time.asctime()
-    xfer_db.add(transfer)
+    #transfer = zoodb.Transfer()
+    #transfer.sender = sender.username
+    #transfer.recipient = recipient.username
+    #transfer.amount = zoobars
+    #transfer.time = time.asctime()
+    #xfer_db.add(transfer)
 
-    person_db.commit()
-    xfer_db.commit()
+    #person_db.commit()
+    #xfer_db.commit()
 

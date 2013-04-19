@@ -36,13 +36,15 @@ def transfer():
             #recipient_balance_obj.zoobars = recipient_balance
            
             token = request.cookies.get("PyZoobarLogin").split("#")[1]
-            log("token is:%s"%token)            
+            #log("token is:%s"%token)            
             msg = 'modify@#' \
                 + g.user.person.username + "@#" \
                 + str(sender_balance) + "@#" \
                 + token
             resp = call("blnssvc/sock", msg).strip()
-            log("-------- msg: %s Response = %s" % (msg,resp) )
+            log("-------- msg: %s Response = %s" % (msg,resp))
+            if not resp:
+               raise ValueError()
             
             msg = 'modify@#' \
                 + recipient.username + "@#" \
