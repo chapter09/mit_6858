@@ -539,15 +539,15 @@ def main():
         #check_hello()
         #check_visit_tracker()
         #check_last_visits()
-        #check_xfer_tracker()
+        check_xfer_tracker()
         check_granter()
 
         #if check_sandbox():
-            #check_tmp()
-            #check_nontmp_write()
+           #check_tmp()
+           #check_nontmp_write()
 
-            #check_challenge1()
-            #check_challenge2()
+           #check_challenge1()
+           #check_challenge2()
     except Exception:
         log_exit(traceback.format_exc())
 

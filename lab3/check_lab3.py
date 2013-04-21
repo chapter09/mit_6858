@@ -543,11 +543,11 @@ def main():
         check_granter()
 
         if check_sandbox():
-            check_tmp()
-            check_nontmp_write()
+           check_tmp()
+           check_nontmp_write()
 
-            check_challenge1()
-            check_challenge2()
+           check_challenge1()
+           check_challenge2()
     except Exception:
         log_exit(traceback.format_exc())
 

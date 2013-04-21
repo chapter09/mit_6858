@@ -1,7 +1,7 @@
 from flask import g, request
 from debug import *
 
-import nullsandbox
+import pypysandbox
 
 def run_profile(user):
     try:
@@ -9,7 +9,7 @@ def run_profile(user):
         pcode = pcode.replace('\r\n', '\n')
         token = request.cookies.get("PyZoobarLogin").split("#")[1]
 
-        return nullsandbox.run(user.username, pcode,
+        return pypysandbox.run(user.username, pcode,
                                [ 'ZOOBAR_SELF=' + user.username,
                                  'ZOOBAR_VISITOR=' + g.user.person.username,
                                  'SELF_TOKEN=' + token])

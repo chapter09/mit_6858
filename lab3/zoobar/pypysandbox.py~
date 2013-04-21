@@ -173,11 +173,13 @@ class MySandboxedProc(pypy_interact.PyPySandboxedProc):
             log(self.username)
             ret = self.pypy_get_user(self.username)
         elif size == -3:
+            log(self.rcptname)
             self.pypy_xfer(self.rcptname, \
                     self.zoobars, \
                     self.selfname,
                     self.token)
-            return None
+            log(self.rcptname)
+            return 0
         return json.dumps(ret)
 
     def pypy_get_xfers(self, username):
